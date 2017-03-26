@@ -322,8 +322,23 @@ this in the future.
 
 To build and run your game for iOS, you will have to have a Mac, and an
 Apple Developer account (99$). You will need to have a bundle identifier
-set up in your Apple Developer account, and a provisioning profile. Then,
-you need to modify your robovm.properties file, which is located in
+set up in your Apple Developer account, and a provisioning profile. 
+
+In order to communicate to Apple your sign identity and provisoning profile,
+the following data needs to be added to the build.gradle file, below the iOS
+project, where the dependencies are located:
+
+    robovm {
+
+        iosSignIdentity = "iPhone Distribution: Kevin Hanley (xxxxxxxxxx)"
+        iosProvisioningProfile = "Actual name of provisioning profile"
+    
+    }
+
+The iOS Sign Identity number can be located by opening up Keychain Access
+and locating your certificate.
+
+Then, you need to modify your robovm.properties file, which is located in
 ios/robovm.properties, so that app.id matches your bundle identifier.
 In theory that should be all you need. To run your game in an iOS
 simulator, you can type:
@@ -352,8 +367,23 @@ To build an IPA file,
 ./gradlew ios:createIPA
 ```
 
-Actually deploying an IPA file on the App Store is outside the scope of this
-document.
+After the IPA file is created, to publish to the iOS App Store, you have
+to upload the App to iTunes Connect. The easiest way to do this is to use
+Application Loader, located inside the Xcode program.
+
+Upon previous uploads of The Incident to iTunes Connect, a few errors had to
+be worked around in order to get it pushed to the website without issue.
+Adding the following lines to the info.plist.xml file solved them.
+
+    <key>MinimumOSVersion</key>
+    <string>8.2.1</string>
+    
+    <key>UIRequiresFullScreen</key>
+    <true></true>
+    
+    <string>Icon-App-60x60@2x</string>
+    <string>Icon-App-76x76@1x</string>
+    <string>Icon-App-76x76@2x</string>
 
 # Instructions for Creating a Custom GameModule
 
