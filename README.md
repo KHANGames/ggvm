@@ -322,8 +322,17 @@ this in the future.
 
 To build and run your game for iOS, you will have to have a Mac, and an
 Apple Developer account (99$). You will need to have a bundle identifier
-set up in your Apple Developer account, and a provisioning profile. Then,
-you need to modify your robovm.properties file, which is located in
+set up in your Apple Developer account, and a provisioning profile. There
+are two different types of provisioning profiles: one for development, and
+one for distribution. In order to upload an IPA file (the extension used by
+iOS applications) to iTunes Connect (the launchpad for submitting applications
+to the App Store), you will need to use a Distribution Provisioning Profile.
+If you try to use a Development Provisioning Profile, it will not work. The
+certificate linked from your Apple Development account must also be an iOS
+Distribution certificate, and not an iOS Development certificate. Apple is
+very picky about both of these.
+
+Then, you need to modify your robovm.properties file, which is located in
 ios/robovm.properties, so that app.id matches your bundle identifier.
 In theory that should be all you need. To run your game in an iOS
 simulator, you can type:
@@ -352,8 +361,7 @@ To build an IPA file,
 ./gradlew ios:createIPA
 ```
 
-Actually deploying an IPA file on the App Store is outside the scope of this
-document.
+
 
 # Instructions for Creating a Custom GameModule
 
