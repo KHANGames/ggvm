@@ -320,9 +320,16 @@ NOTE: .ogg sound files do not play back on iOS. It is recommended to use
 Dushlan assets are all .ogg files and will not run on iOS. I will update
 this in the future.
 
-To build and run your game for iOS, you will have to have a Mac, and an
-Apple Developer account (99$). You will need to have a bundle identifier
-set up in your Apple Developer account, and a provisioning profile. 
+To build and run your game for iOS, you will have to have a Mac, and an Apple
+Developer account (99$). You will need to have a bundle identifier set up in
+your Apple Developer account, and a provisioning profile. There are two different
+types of provisioning profiles: one for development, and one for distribution.
+In order to upload an IPA file (the extension used by iOS applications) to iTunes
+Connect (the launchpad for submitting applications to the App Store), you will
+need to use a Distribution Provisioning Profile. If you try to use a Development
+Provisioning Profile, it will not work. The certificate linked from your Apple
+Development account must also be an iOS Distribution certificate, and not an
+iOS Development certificate. Apple is very picky about both of these.
 
 In order to communicate to Apple your sign identity and provisoning profile,
 the following data needs to be added to the build.gradle file, below the iOS
